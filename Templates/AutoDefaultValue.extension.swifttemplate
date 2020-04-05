@@ -1,0 +1,17 @@
+
+<%_ 
+enum DefaultValueRegistry {
+    static let simpleMappings: [String:String] = [
+        "Date":"Date(timeIntervalSince1970: 0)",
+        "URL":"URL(string: \"https://xxx.xxxx.xx\")!",
+        // Please add extra default value mappings
+    ]
+
+    static func defaultValue(from typeName: String) -> String {
+        guard Self.simpleMappings.keys.contains(typeName) else {
+            fatalError("Unexpected type name: \(typeName)")
+        }
+        return Self.simpleMappings[typeName]!
+    }
+}
+-%>

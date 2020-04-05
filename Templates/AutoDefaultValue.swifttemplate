@@ -1,3 +1,8 @@
+<%# Constructs static method `makeDefault()` for struct initialization by default values. -%>
+<%# NOTE: If you want to add additional default value mapping, please edit `AutoDefaultValue.extension.swift`. -%>
+
+<%- include("AutoDefaultValue.extension.swifttemplate") -%>
+
 <%_ 
 extension Typed {
     func hasAnnotationOrImplements(_ identifier: String) -> Bool {
@@ -49,7 +54,7 @@ func defaultValue(from typeName: String) -> String {
     case "Int", "UInt", "Double", "Float":
         return "0"
     default:
-        fatalError("Unexpected type name: \(typeName)")
+        return DefaultValueRegistry.defaultValue(from: typeName)
     }
 }
 

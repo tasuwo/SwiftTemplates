@@ -237,7 +237,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Sourcery/bin/sourcery\" \\\n    --sources \"${SRCROOT}/Tests/Context\" \\\n    --templates \"${SRCROOT}/Templates\" \\\n    --output \"${SRCROOT}/Tests/Generated\" \\\n    --disableCache --verbose\n";
+			shellScript = "\"${PODS_ROOT}/Sourcery/bin/sourcery\" \\\n    --sources \"${SRCROOT}/Tests/Context\" \\\n    --templates \"${SRCROOT}/Templates\" \\\n    --output \"${SRCROOT}/Tests/Generated\" \\\n    --args import=\"Foundation\" \\\n    --disableCache --verbose\n";
 		};
 		FD22CD49F61CBBB7FBFFB45D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

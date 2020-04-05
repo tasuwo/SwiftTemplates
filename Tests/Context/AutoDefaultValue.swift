@@ -71,6 +71,11 @@ struct AutoDefaultValueStruct: AutoDefaultValue {
     // MARK: - Class
 
     let classValue: AutoDefaultValueClass
+
+    // MARK: - Extra
+
+    let date: Date
+    let url: URL
 }
 
 enum AutoDefaultValueEnum {

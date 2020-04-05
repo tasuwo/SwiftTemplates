@@ -4,6 +4,8 @@
 
 
 
+
+import Foundation
 extension AutoDefaultValueOtherStruct {
     static func makeDefault(
             string: String = "",
@@ -23,9 +25,6 @@ extension AutoDefaultValueOtherStruct {
         )
     }
 }
-
-
-
 extension AutoDefaultValueStruct {
     static func makeDefault(
             string: String = "",
@@ -58,7 +57,9 @@ extension AutoDefaultValueStruct {
             tuple: (String, integer: Int, Bool, array: [String]) = ("", 0, false, []),
             voidValue: Void = (),
             other: AutoDefaultValueOtherStruct = AutoDefaultValueOtherStruct.makeDefault(),
-            classValue: AutoDefaultValueClass = AutoDefaultValueClass()
+            classValue: AutoDefaultValueClass = AutoDefaultValueClass(),
+            date: Date = Date(timeIntervalSince1970: 0),
+            url: URL = URL(string: "https://xxx.xxxx.xx")!
     ) -> Self {
         return .init(
             string: string,
@@ -91,7 +92,9 @@ extension AutoDefaultValueStruct {
             tuple: tuple,
             voidValue: voidValue,
             other: other,
-            classValue: classValue
+            classValue: classValue,
+            date: date,
+            url: url
         )
     }
 }
