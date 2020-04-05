@@ -4,14 +4,23 @@
 <%- include("AutoDefaultValue.extension.swifttemplate") -%>
 
 <%_ 
-extension Typed {
+protocol DefaultValueGeneratable {
+    var typeName: TypeName { get }
+    var type: Type? { get }
+}
+extension Variable: DefaultValueGeneratable {}
+extension TupleElement: DefaultValueGeneratable {}
+extension AssociatedValue: DefaultValueGeneratable {}
+extension GenericTypeParameter: DefaultValueGeneratable {}
+
+extension DefaultValueGeneratable {
     func hasAnnotationOrImplements(_ identifier: String) -> Bool {
         return self.type?.annotations.keys.contains(identifier) == true 
             || self.type?.implements.keys.contains(identifier) == true
     }
 }
 
-func defaultValue(from variable: Typed, identifiedBy identifier: String) -> String {
+func defaultValue(from variable: DefaultValueGeneratable, identifiedBy identifier: String) -> String {
     guard !variable.typeName.isOptional else {
         return "nil"
     }
@@ -40,6 +49,8 @@ func defaultValue(from variable: Typed, identifiedBy identifier: String) -> Stri
         return "[]"
     } else if variable.typeName.isDictionary {
         return "[:]"
+    } else if variable.typeName.isGeneric {
+        return defaultValue(from: variable.typeName.generic!, identifiedBy: identifier)
     }
 
     return defaultValue(from: variable.typeName.name)
@@ -54,7 +65,7 @@ func defaultValue(from typeName: String) -> String {
     case "Int", "UInt", "Double", "Float":
         return "0"
     default:
-        return DefaultValueRegistry.defaultValue(from: typeName)
+        return DefaultValueSettings.defaultValue(from: typeName)
     }
 }
 
@@ -86,6 +97,23 @@ func defaultValue(from tupleType: TupleType, identifiedBy identifier: String) ->
         .map { defaultValue(from: $0, identifiedBy: identifier) }
         .joined(separator: ", ")
     return "(\(elements))"
+}
+
+func defaultValue(from genericType: GenericType, identifiedBy identifier: String) -> String {
+    let typeParameterDefaultValueById = genericType
+        .typeParameters
+        .enumerated()
+        .reduce(into: [String:String]()) { dic, e in
+            let value = defaultValue(from: e.element, identifiedBy: identifier)
+            let id = "@\(e.offset)"
+            dic[id] = value
+        }
+    let format = DefaultValueSettings.defaultValueFormat(for: genericType.name)
+
+    return typeParameterDefaultValueById
+        .reduce(into: format) { result, e in
+            result = result.replacingOccurrences(of: e.key, with: e.value)
+        }
 }
 
 let identifier = "AutoDefaultValue"

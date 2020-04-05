@@ -72,10 +72,17 @@ struct AutoDefaultValueStruct: AutoDefaultValue {
 
     let classValue: AutoDefaultValueClass
 
-    // MARK: - Extra
+    // MARK: - [Extra] Simple Type Mapping
 
     let date: Date
     let url: URL
+
+    // MARK: - [Extra] Generics Type Mapping
+
+    let integerClosedRange: ClosedRange<Int>
+    let doubleClosedRange: ClosedRange<Double>
+    let stringSet: Set<String>
+    let integerSet: Set<Int>
 }
 
 enum AutoDefaultValueEnum {

@@ -59,7 +59,11 @@ extension AutoDefaultValueStruct {
             other: AutoDefaultValueOtherStruct = AutoDefaultValueOtherStruct.makeDefault(),
             classValue: AutoDefaultValueClass = AutoDefaultValueClass(),
             date: Date = Date(timeIntervalSince1970: 0),
-            url: URL = URL(string: "https://xxx.xxxx.xx")!
+            url: URL = URL(string: "https://xxx.xxxx.xx")!,
+            integerClosedRange: ClosedRange<Int> = 0...0,
+            doubleClosedRange: ClosedRange<Double> = 0...0,
+            stringSet: Set<String> = [],
+            integerSet: Set<Int> = []
     ) -> Self {
         return .init(
             string: string,
@@ -94,7 +98,11 @@ extension AutoDefaultValueStruct {
             other: other,
             classValue: classValue,
             date: date,
-            url: url
+            url: url,
+            integerClosedRange: integerClosedRange,
+            doubleClosedRange: doubleClosedRange,
+            stringSet: stringSet,
+            integerSet: integerSet
         )
     }
 }
