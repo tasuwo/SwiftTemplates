@@ -123,6 +123,7 @@ if let modules = argument["testable_import"] as? String {
     for module in modules.split(separator: ",") {
 -%>
 @testable import <%= module -%>
+
 <%_
     }
 }
@@ -133,6 +134,7 @@ if let modules = argument["import"] as? String {
     for module in modules.split(separator: ",") {
 -%>
 import <%= module -%>
+
 <%_
     }
 }
