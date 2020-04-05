@@ -85,8 +85,6 @@ func defaultValue(from tupleType: TupleType, identifiedBy identifier: String) ->
 
 let identifier = "AutoDefaultValue"
 -%>
-<% for type in types.all.filter({ $0.annotations.keys.contains(identifier) || $0.implements.keys.contains(identifier) }) { -%>
-
 <%_
 if let modules = argument["testable_import"] as? String {
     for module in modules.split(separator: ",") {
@@ -107,6 +105,7 @@ import <%= module -%>
 }
 -%>
 
+<% for type in types.all.filter({ $0.annotations.keys.contains(identifier) || $0.implements.keys.contains(identifier) }) { -%>
 extension <%= type.name %> {
     static func makeDefault(
         <%_ for (index, variable) in type.storedVariables.enumerated() { -%>
