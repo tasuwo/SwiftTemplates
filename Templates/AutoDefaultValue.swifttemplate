@@ -1,0 +1,123 @@
+<%_ 
+extension Typed {
+    func hasAnnotationOrImplements(_ identifier: String) -> Bool {
+        return self.type?.annotations.keys.contains(identifier) == true 
+            || self.type?.implements.keys.contains(identifier) == true
+    }
+}
+
+func defaultValue(from variable: Typed, identifiedBy identifier: String) -> String {
+    guard !variable.typeName.isOptional else {
+        return "nil"
+    }
+
+    guard !variable.hasAnnotationOrImplements(identifier) else {
+        return "\(variable.typeName.name).makeDefault()"
+    }
+
+    guard !variable.typeName.isVoid else {
+        return "()"
+    }
+
+    guard !variable.typeName.isTuple else {
+        return defaultValue(from: variable.typeName.tuple!, identifiedBy: identifier)
+    }
+
+    guard variable.type?.kind != "enum" else {
+        return defaultValue(from: variable.type as! Enum, identifiedBy: identifier)
+    }
+
+    guard variable.type?.kind != "class" else {
+        return "\(variable.typeName.name)()"
+    }
+
+    if variable.typeName.isArray {
+        return "[]"
+    } else if variable.typeName.isDictionary {
+        return "[:]"
+    }
+
+    return defaultValue(from: variable.typeName.name)
+}
+
+func defaultValue(from typeName: String) -> String {
+    switch typeName {
+    case "String":
+        return "\"\""
+    case "Bool":
+        return "false"
+    case "Int", "UInt", "Double", "Float":
+        return "0"
+    default:
+        fatalError("Unexpected type name: \(typeName)")
+    }
+}
+
+func defaultValue(from enumType: Enum, identifiedBy identifier: String) -> String {
+    guard let firstCase = enumType.cases.first else {
+        fatalError("Enum MUST have at least one element.")
+    }
+    if firstCase.associatedValues.isEmpty {
+        return ".\(firstCase.name)"
+    } else {
+        let defaultAssociatedValues = firstCase
+            .associatedValues
+            .map { associatedValue -> String in 
+                let value = defaultValue(from: associatedValue, identifiedBy: identifier) 
+                if let label = associatedValue.localName {
+                    return "\(label): \(value)"
+                } else {
+                    return value
+                }
+            }
+            .joined(separator: ", ")
+        return ".\(firstCase.name)(\(defaultAssociatedValues))"
+    }
+}
+
+func defaultValue(from tupleType: TupleType, identifiedBy identifier: String) -> String {
+    let elements = tupleType
+        .elements
+        .map { defaultValue(from: $0, identifiedBy: identifier) }
+        .joined(separator: ", ")
+    return "(\(elements))"
+}
+
+let identifier = "AutoDefaultValue"
+-%>
+<% for type in types.all.filter({ $0.annotations.keys.contains(identifier) || $0.implements.keys.contains(identifier) }) { -%>
+
+<%_
+if let modules = argument["testable_import"] as? String {
+    for module in modules.split(separator: ",") {
+-%>
+@testable import <%= module -%>
+<%_
+    }
+}
+-%>
+
+<%_
+if let modules = argument["import"] as? String {
+    for module in modules.split(separator: ",") {
+-%>
+import <%= module -%>
+<%_
+    }
+}
+-%>
+
+extension <%= type.name %> {
+    static func makeDefault(
+        <%_ for (index, variable) in type.storedVariables.enumerated() { -%>
+            <%= variable.name %>: <%= variable.typeName %> = <%= defaultValue(from: variable, identifiedBy: identifier) %><%_ if index < type.storedVariables.count - 1 { -%>,<% } %>
+        <%_ } -%>
+    ) -> Self {
+        return .init(
+        <%_ for (index, variable) in type.storedVariables.enumerated() { -%>
+            <%= variable.name %>: <%= variable.name %><%_ if index < type.storedVariables.count - 1 { -%>,<% } %>
+        <%_ } -%>
+        )
+    }
+}
+<%_ } -%>
