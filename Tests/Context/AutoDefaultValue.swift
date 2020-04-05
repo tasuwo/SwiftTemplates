@@ -85,6 +85,22 @@ struct AutoDefaultValueStruct: AutoDefaultValue {
     let integerSet: Set<Int>
 }
 
+// MARK: - Namespaces
+
+enum AutoDefaultValueNamespace {}
+
+extension AutoDefaultValueNamespace {
+    struct AutoDefaultValueInnerStruct1: AutoDefaultValue {
+        let string: String
+    }
+
+    struct AutoDefaultValueInnerStruct2: AutoDefaultValue {
+        let innerStruct: AutoDefaultValueInnerStruct1
+    }
+}
+
+// MARK: - Definitions for test cases
+
 enum AutoDefaultValueEnum {
     case foo
     case bar

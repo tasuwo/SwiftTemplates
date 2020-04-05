@@ -6,6 +6,25 @@
 
 
 import Foundation
+
+extension AutoDefaultValueNamespace.AutoDefaultValueInnerStruct1 {
+    static func makeDefault(
+            string: String = ""
+    ) -> Self {
+        return .init(
+            string: string
+        )
+    }
+}
+extension AutoDefaultValueNamespace.AutoDefaultValueInnerStruct2 {
+    static func makeDefault(
+            innerStruct: AutoDefaultValueNamespace.AutoDefaultValueInnerStruct1 = AutoDefaultValueNamespace.AutoDefaultValueInnerStruct1.makeDefault()
+    ) -> Self {
+        return .init(
+            innerStruct: innerStruct
+        )
+    }
+}
 extension AutoDefaultValueOtherStruct {
     static func makeDefault(
             string: String = "",
@@ -39,19 +58,19 @@ extension AutoDefaultValueStruct {
             optionalUInt: UInt? = nil,
             optionalDouble: Double? = nil,
             optionalFloat: Float? = nil,
-            implicityUnwrappedOptionalString: String! = nil,
-            implicityUnwrappedOptionalBool: Bool! = nil,
-            implicityUnwrappedOptionalInt: Int! = nil,
-            implicityUnwrappedOptionalUInt: UInt! = nil,
-            implicityUnwrappedOptionalDouble: Double! = nil,
-            implicityUnwrappedOptionalFloat: Float! = nil,
+            implicityUnwrappedOptionalString: String? = nil,
+            implicityUnwrappedOptionalBool: Bool? = nil,
+            implicityUnwrappedOptionalInt: Int? = nil,
+            implicityUnwrappedOptionalUInt: UInt? = nil,
+            implicityUnwrappedOptionalDouble: Double? = nil,
+            implicityUnwrappedOptionalFloat: Float? = nil,
             arrayString: [String] = [],
             arrayBool: [Bool] = [],
             arrayInt: [Int] = [],
             arrayUInt: [UInt] = [],
             arrayDouble: [Double] = [],
             arrayFloat: [Float] = [],
-            dictionary: [String:Any] = [:],
+            dictionary: [String: Any] = [:],
             enumValue: AutoDefaultValueEnum = .foo,
             enumValueHasAssociatedValues: AutoDefaultValueEnumHasAssociatedValues = .foo("", integer: 0, false, array: []),
             tuple: (String, integer: Int, Bool, array: [String]) = ("", 0, false, []),
