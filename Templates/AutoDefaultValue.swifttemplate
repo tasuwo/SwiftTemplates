@@ -128,7 +128,7 @@ let identifier = "AutoDefaultValue"
 -%>
 <%_
 if let modules = argument["testable_import"] as? String {
-    for module in modules.split(separator: ",") {
+    for module in modules.split(separator: ";") {
 -%>
 @testable import <%= module -%>
 
@@ -139,7 +139,7 @@ if let modules = argument["testable_import"] as? String {
 
 <%_
 if let modules = argument["import"] as? String {
-    for module in modules.split(separator: ",") {
+    for module in modules.split(separator: ";") {
 -%>
 import <%= module -%>
 
