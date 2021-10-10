@@ -126,6 +126,7 @@ func defaultValue(from genericType: GenericType, identifiedBy identifier: String
 
 let identifier = "AutoDefaultValue"
 let publicIdentifier = "AutoDefaultValuePublic"
+let validIdentifiers = [identifier, publicIdentifier]
 -%>
 <%_
 if let modules = argument["testable_import"] as? String {
@@ -149,8 +150,20 @@ import <%= module -%>
 }
 -%>
 
-<% for type in types.all.filter({ $0.annotations.keys.contains(where: { $0.hasPrefix(identifier) }) || $0.implements.keys.contains(where: { $0.hasPrefix(identifier) }) }) { -%>
-<%_ if type.annotations.keys.contains(publicIdentifier) || type.implements.keys.contains(publicIdentifier) { -%>
+<% for type in types.all { -%>
+<%_
+let key: String? = {
+    if let key = type.annotations.keys.first(where: { validIdentifiers.contains($0) }) {
+        return key
+    }
+    if let key = type.implements.keys.first(where: { validIdentifiers.contains($0) }) {
+        return key
+    }
+    return nil
+}()
+guard let key = key else { continue }
+-%>
+<%_ if key == publicIdentifier { -%>
 public extension <%= type.name %> {
 <%_ } else { -%>
 extension <%= type.name %> {
