@@ -1,0 +1,9 @@
+sources:
+  - ./Tests/Context
+templates:
+  - ./Templates
+output:
+  ./Tests/Generated
+args:
+  import: "Foundation.NSDate;Foundation.NSURL"
+  testable_import: "ModuleA;ModuleB"

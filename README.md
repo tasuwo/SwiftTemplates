@@ -15,15 +15,22 @@ Template used to generate initializer with default values for all structures tha
 Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery) via CocoaPods. Just add a new "Run Script Phase" with:
 
 ``` shell
-if [[ ! -f "${PROJECT_DIR}/templates/AutoDefaultValue.swifttemplate" ]] || [[ ! -f "${PROJECT_DIR}/templates/AutoDefaultValue.extension.swifttemplate" ]]; then
+#!/bin/sh
+
+VERSION="v1.0.0"
+
+if [[ ! -f "${PROJECT_DIR}/templates/AutoDefaultValue.swifttemplate" ]]; then
     curl -o "${PROJECT_DIR}/templates/AutoDefaultValue.swifttemplate" \
-        "https://raw.githubusercontent.com/tasuwo/SwiftTemplates/master/Templates/AutoDefaultValue.swifttemplate"
+        "https://raw.githubusercontent.com/tasuwo/SwiftTemplates/${VERSION}/Templates/AutoDefaultValue.swifttemplate"
+fi
+
+if [[ ! -f "${PROJECT_DIR}/templates/AutoDefaultValue.extension.swifttemplate" ]]; then
     curl -o "${PROJECT_DIR}/templates/AutoDefaultValue.extension.swifttemplate" \
-        "https://raw.githubusercontent.com/tasuwo/SwiftTemplates/master/Templates/AutoDefaultValue.extension.swifttemplate"
+        "https://raw.githubusercontent.com/tasuwo/SwiftTemplates/${VERSION}/Templates/AutoDefaultValue.extension.swifttemplate"
 fi
 
 if [[ -f "${PODS_ROOT}/Sourcery/bin/sourcery" ]]; then
-  "${PODS_ROOT}/Sourcery/bin/sourcery" --config $PROJECT_DIR/.sourcery.yml
+  ${PODS_ROOT}/Sourcery/bin/sourcery --config ${PROJECT_DIR}/.sourcery.yml
 else
   echo "warning: Sourcery is not installed. Run 'pod install --repo-update' to install it."
 fi

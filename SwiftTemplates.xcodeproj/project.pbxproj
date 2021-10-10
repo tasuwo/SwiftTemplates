@@ -352,15 +352,19 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Templates/AutoDefaultValue.swifttemplate",
+				"$(SRCROOT)/Templates/AutoDefaultValue.extension.swifttemplate",
+				"$(SRCROOT)/.sourcery.yml",
 			);
 			name = Sourcery;
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(SRCROOT)/Tests/Generated/AutoDefaultValue.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"Pods/Sourcery/bin/sourcery\" \\\n    --sources \"${SRCROOT}/Tests/Context\" \\\n    --templates \"${SRCROOT}/Templates\" \\\n    --output \"${SRCROOT}/Tests/Generated\" \\\n    --args import=\"Foundation.NSDate;Foundation.NSURL\",testable_import=\"ModuleA;ModuleB\" \\\n    --disableCache --verbose\n";
+			shellScript = "Pods/Sourcery/bin/sourcery --config ${PROJECT_DIR}/.sourcery.yml --disableCache --verbose\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
