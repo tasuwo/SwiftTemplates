@@ -39,6 +39,8 @@ class SwiftTemplatesSpec: QuickSpec {
             .filter { !$0.hasPrefix("//") }
 
         expect(generatedFileLines.count).to(equal(expectedFileLines.count))
+        guard generatedFileLines.count == expectedFileLines.count else { return }
+
         zip(generatedFileLines.indices, generatedFileLines).forEach { index, generatedLine in
             expect(generatedLine).to(equal(expectedFileLines[index]))
         }

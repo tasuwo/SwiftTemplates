@@ -123,3 +123,16 @@ struct AutoDefaultValueOtherStruct: AutoDefaultValue {
 class AutoDefaultValueClass {
     init() {}
 }
+
+// MARK: - Public
+
+protocol AutoDefaultValuePublic {}
+
+public struct AutoDefaultValuePublicStruct: AutoDefaultValuePublic {
+    let string: String
+    let bool: Bool
+    let integer: Int
+    let unsignedInterger: UInt
+    let double: Double
+    let float: Float
+}

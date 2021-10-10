@@ -46,6 +46,25 @@ extension AutoDefaultValueOtherStruct {
         )
     }
 }
+public extension AutoDefaultValuePublicStruct {
+    static func makeDefault(
+            string: String = "",
+            bool: Bool = false,
+            integer: Int = 0,
+            unsignedInterger: UInt = 0,
+            double: Double = 0,
+            float: Float = 0
+    ) -> Self {
+        return .init(
+            string: string,
+            bool: bool,
+            integer: integer,
+            unsignedInterger: unsignedInterger,
+            double: double,
+            float: float
+        )
+    }
+}
 extension AutoDefaultValueStruct {
     static func makeDefault(
             string: String = "",
