@@ -1,6 +1,9 @@
 My Set of Sourcery templates
 ============================
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://mit-license.org)
+[![Test](https://github.com/tasuwo/SwiftTemplates/actions/workflows/test.yml/badge.svg)](https://github.com/tasuwo/SwiftTemplates/actions/workflows/test.yml)
+
 [Sourcery](https://github.com/krzysztofzablocki/Sourcery) templates for generating helper methods and initializers.
 
 ## AutoDefaultValue
