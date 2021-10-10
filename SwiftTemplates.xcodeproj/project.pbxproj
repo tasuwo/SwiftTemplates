@@ -3,17 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2C78B8BB2439C013002F262C /* SwiftTemplatesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78B8BA2439C013002F262C /* SwiftTemplatesSpec.swift */; };
 		2C78B8C92439C5E2002F262C /* AutoDefaultValue.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 2C78B8C72439C5E2002F262C /* AutoDefaultValue.swifttemplate */; };
 		2C78B8CD2439C78C002F262C /* AutoDefaultValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78B8CC2439C78C002F262C /* AutoDefaultValue.swift */; };
+		2CA9102627128DD100E4A17D /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 2CA9102527128DD100E4A17D /* Quick */; };
+		2CA9102927128DF600E4A17D /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 2CA9102827128DF600E4A17D /* Nimble */; };
 		2CEBA4562439EB3200087595 /* AutoDefaultValue.expected in Resources */ = {isa = PBXBuildFile; fileRef = 2C78B8D52439E756002F262C /* AutoDefaultValue.expected */; };
 		2CEBA4592439EC6A00087595 /* AutoDefaultValue.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78B8D12439D50D002F262C /* AutoDefaultValue.generated.swift */; };
 		2CEBA45C2439ED2100087595 /* AutoDefaultValue.generated.swift in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C78B8D12439D50D002F262C /* AutoDefaultValue.generated.swift */; };
-		96F6652BCA31DE54D8EEF006 /* Pods_SwiftTemplatesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F65AEE1A9BB328E1D7F61AB6 /* Pods_SwiftTemplatesTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,8 +38,6 @@
 		2C78B8CC2439C78C002F262C /* AutoDefaultValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoDefaultValue.swift; sourceTree = "<group>"; };
 		2C78B8D12439D50D002F262C /* AutoDefaultValue.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoDefaultValue.generated.swift; sourceTree = "<group>"; };
 		2C78B8D52439E756002F262C /* AutoDefaultValue.expected */ = {isa = PBXFileReference; lastKnownFileType = text; path = AutoDefaultValue.expected; sourceTree = "<group>"; };
-		C238DDEE930049B7B6F6D2E6 /* Pods-SwiftTemplatesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTemplatesTests.release.xcconfig"; path = "Target Support Files/Pods-SwiftTemplatesTests/Pods-SwiftTemplatesTests.release.xcconfig"; sourceTree = "<group>"; };
-		F045787872DB1DE9ED8671B8 /* Pods-SwiftTemplatesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftTemplatesTests.debug.xcconfig"; path = "Target Support Files/Pods-SwiftTemplatesTests/Pods-SwiftTemplatesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F65AEE1A9BB328E1D7F61AB6 /* Pods_SwiftTemplatesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftTemplatesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -47,7 +46,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96F6652BCA31DE54D8EEF006 /* Pods_SwiftTemplatesTests.framework in Frameworks */,
+				2CA9102927128DF600E4A17D /* Nimble in Frameworks */,
+				2CA9102627128DD100E4A17D /* Quick in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,7 +60,6 @@
 				2C78B8C42439C4AD002F262C /* Templates */,
 				2C78B8B92439C013002F262C /* Tests */,
 				2C78B8A22439BFB3002F262C /* Products */,
-				DB604DE263EA0643ED2A33D9 /* Pods */,
 				4A8B8A2D33BA9015749021D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -125,15 +124,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DB604DE263EA0643ED2A33D9 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F045787872DB1DE9ED8671B8 /* Pods-SwiftTemplatesTests.debug.xcconfig */,
-				C238DDEE930049B7B6F6D2E6 /* Pods-SwiftTemplatesTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -141,12 +131,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C78B8BD2439C013002F262C /* Build configuration list for PBXNativeTarget "SwiftTemplatesTests" */;
 			buildPhases = (
-				FD22CD49F61CBBB7FBFFB45D /* [CP] Check Pods Manifest.lock */,
 				2C78B8C02439C3EE002F262C /* Sourcery */,
 				2C78B8B42439C013002F262C /* Sources */,
 				2C78B8B52439C013002F262C /* Frameworks */,
 				2C78B8B62439C013002F262C /* Resources */,
-				0EF5F1C24D954885C2B1BF8B /* [CP] Embed Pods Frameworks */,
 				2CEBA45B2439ED1900087595 /* CopyFiles */,
 			);
 			buildRules = (
@@ -154,6 +142,10 @@
 			dependencies = (
 			);
 			name = SwiftTemplatesTests;
+			packageProductDependencies = (
+				2CA9102527128DD100E4A17D /* Quick */,
+				2CA9102827128DF600E4A17D /* Nimble */,
+			);
 			productName = SwiftTemplatesTests;
 			productReference = 2C78B8B82439C013002F262C /* SwiftTemplatesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -182,6 +174,10 @@
 				Base,
 			);
 			mainGroup = 2C78B8982439BFB3002F262C;
+			packageReferences = (
+				2CA9102427128DD100E4A17D /* XCRemoteSwiftPackageReference "Quick" */,
+				2CA9102727128DF600E4A17D /* XCRemoteSwiftPackageReference "Nimble" */,
+			);
 			productRefGroup = 2C78B8A22439BFB3002F262C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -204,23 +200,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0EF5F1C24D954885C2B1BF8B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwiftTemplatesTests/Pods-SwiftTemplatesTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwiftTemplatesTests/Pods-SwiftTemplatesTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwiftTemplatesTests/Pods-SwiftTemplatesTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2C78B8C02439C3EE002F262C /* Sourcery */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -237,29 +216,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Sourcery/bin/sourcery\" \\\n    --sources \"${SRCROOT}/Tests/Context\" \\\n    --templates \"${SRCROOT}/Templates\" \\\n    --output \"${SRCROOT}/Tests/Generated\" \\\n    --args import=\"Foundation\" \\\n    --disableCache --verbose\n";
-		};
-		FD22CD49F61CBBB7FBFFB45D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SwiftTemplatesTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "\"Pods/Sourcery/bin/sourcery\" \\\n    --sources \"${SRCROOT}/Tests/Context\" \\\n    --templates \"${SRCROOT}/Templates\" \\\n    --output \"${SRCROOT}/Tests/Generated\" \\\n    --args import=\"Foundation\" \\\n    --disableCache --verbose\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -392,7 +349,6 @@
 		};
 		2C78B8BE2439C013002F262C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F045787872DB1DE9ED8671B8 /* Pods-SwiftTemplatesTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -412,7 +368,6 @@
 		};
 		2C78B8BF2439C013002F262C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C238DDEE930049B7B6F6D2E6 /* Pods-SwiftTemplatesTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -452,6 +407,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2CA9102427128DD100E4A17D /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Quick.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		2CA9102727128DF600E4A17D /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2CA9102527128DD100E4A17D /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CA9102427128DD100E4A17D /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
+		};
+		2CA9102827128DF600E4A17D /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CA9102727128DF600E4A17D /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2C78B8992439BFB3002F262C /* Project object */;
 }

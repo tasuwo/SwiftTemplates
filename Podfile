@@ -1,16 +1,8 @@
-platform :osx, '10.15'
+platform :ios, '14.0'
 
-workspace 'SwiftTemplates.xcworkspace'
-use_frameworks!
-inhibit_all_warnings!
+install! 'cocoapods', :integrate_targets => false
 
-def test_pods
-  pod 'Quick'
-  pod 'Nimble'
-end
-
-target 'SwiftTemplatesTests' do
+target 'TsunDocs' do
   pod 'Sourcery', '~> 0.17.0'
-  test_pods
 end
 
