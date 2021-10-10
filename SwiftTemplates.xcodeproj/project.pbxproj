@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C6404A127129B7500FA1372 /* AutoDefaultValue.extension.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 2C6404A027129B7500FA1372 /* AutoDefaultValue.extension.swifttemplate */; };
 		2C78B8BB2439C013002F262C /* SwiftTemplatesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78B8BA2439C013002F262C /* SwiftTemplatesSpec.swift */; };
 		2C78B8C92439C5E2002F262C /* AutoDefaultValue.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 2C78B8C72439C5E2002F262C /* AutoDefaultValue.swifttemplate */; };
 		2C78B8CD2439C78C002F262C /* AutoDefaultValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78B8CC2439C78C002F262C /* AutoDefaultValue.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C6404A027129B7500FA1372 /* AutoDefaultValue.extension.swifttemplate */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AutoDefaultValue.extension.swifttemplate; sourceTree = "<group>"; };
 		2C78B8B82439C013002F262C /* SwiftTemplatesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftTemplatesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C78B8BA2439C013002F262C /* SwiftTemplatesSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTemplatesSpec.swift; sourceTree = "<group>"; };
 		2C78B8BC2439C013002F262C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				2C78B8C72439C5E2002F262C /* AutoDefaultValue.swifttemplate */,
+				2C6404A027129B7500FA1372 /* AutoDefaultValue.extension.swifttemplate */,
 			);
 			path = Templates;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C6404A127129B7500FA1372 /* AutoDefaultValue.extension.swifttemplate in Resources */,
 				2C78B8C92439C5E2002F262C /* AutoDefaultValue.swifttemplate in Resources */,
 				2CEBA4562439EB3200087595 /* AutoDefaultValue.expected in Resources */,
 			);
