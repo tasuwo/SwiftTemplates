@@ -3,16 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2C6404A127129B7500FA1372 /* AutoDefaultValue.extension.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 2C6404A027129B7500FA1372 /* AutoDefaultValue.extension.swifttemplate */; };
-		2C78B8BB2439C013002F262C /* SwiftTemplatesSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78B8BA2439C013002F262C /* SwiftTemplatesSpec.swift */; };
 		2C78B8C92439C5E2002F262C /* AutoDefaultValue.swifttemplate in Resources */ = {isa = PBXBuildFile; fileRef = 2C78B8C72439C5E2002F262C /* AutoDefaultValue.swifttemplate */; };
 		2C78B8CD2439C78C002F262C /* AutoDefaultValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C78B8CC2439C78C002F262C /* AutoDefaultValue.swift */; };
-		2CA9102627128DD100E4A17D /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 2CA9102527128DD100E4A17D /* Quick */; };
-		2CA9102927128DF600E4A17D /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 2CA9102827128DF600E4A17D /* Nimble */; };
+		2CA908742895D00700BFEB78 /* SwiftTemplatesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1081F02895CFD900741CDC /* SwiftTemplatesTest.swift */; };
 		2CC523CA271298A2002201A8 /* ModuleA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC523B327129879002201A8 /* ModuleA.framework */; };
 		2CC523CB271298A2002201A8 /* ModuleB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CC523BF27129883002201A8 /* ModuleB.framework */; };
 		2CC523CD271299D7002201A8 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC523CC271299D7002201A8 /* main.swift */; };
@@ -53,9 +51,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2C1081F02895CFD900741CDC /* SwiftTemplatesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTemplatesTest.swift; sourceTree = "<group>"; };
 		2C6404A027129B7500FA1372 /* AutoDefaultValue.extension.swifttemplate */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AutoDefaultValue.extension.swifttemplate; sourceTree = "<group>"; };
 		2C78B8B82439C013002F262C /* SwiftTemplatesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftTemplatesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C78B8BA2439C013002F262C /* SwiftTemplatesSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftTemplatesSpec.swift; sourceTree = "<group>"; };
 		2C78B8BC2439C013002F262C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C78B8C72439C5E2002F262C /* AutoDefaultValue.swifttemplate */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AutoDefaultValue.swifttemplate; sourceTree = "<group>"; };
 		2C78B8CC2439C78C002F262C /* AutoDefaultValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoDefaultValue.swift; sourceTree = "<group>"; };
@@ -75,8 +73,6 @@
 			files = (
 				2CC523CA271298A2002201A8 /* ModuleA.framework in Frameworks */,
 				2CC523CB271298A2002201A8 /* ModuleB.framework in Frameworks */,
-				2CA9102927128DF600E4A17D /* Nimble in Frameworks */,
-				2CA9102627128DD100E4A17D /* Quick in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,7 +121,7 @@
 				2C78B8C32439C439002F262C /* Context */,
 				2C78B8C22439C434002F262C /* Expected */,
 				2C78B8C12439C42C002F262C /* Generated */,
-				2C78B8BA2439C013002F262C /* SwiftTemplatesSpec.swift */,
+				2C1081F02895CFD900741CDC /* SwiftTemplatesTest.swift */,
 				2C78B8BC2439C013002F262C /* Info.plist */,
 			);
 			path = Tests;
@@ -226,8 +222,6 @@
 			);
 			name = SwiftTemplatesTests;
 			packageProductDependencies = (
-				2CA9102527128DD100E4A17D /* Quick */,
-				2CA9102827128DF600E4A17D /* Nimble */,
 			);
 			productName = SwiftTemplatesTests;
 			productReference = 2C78B8B82439C013002F262C /* SwiftTemplatesTests.xctest */;
@@ -302,8 +296,6 @@
 			);
 			mainGroup = 2C78B8982439BFB3002F262C;
 			packageReferences = (
-				2CA9102427128DD100E4A17D /* XCRemoteSwiftPackageReference "Quick" */,
-				2CA9102727128DF600E4A17D /* XCRemoteSwiftPackageReference "Nimble" */,
 			);
 			productRefGroup = 2C78B8A22439BFB3002F262C /* Products */;
 			projectDirPath = "";
@@ -373,8 +365,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C78B8BB2439C013002F262C /* SwiftTemplatesSpec.swift in Sources */,
 				2C78B8CD2439C78C002F262C /* AutoDefaultValue.swift in Sources */,
+				2CA908742895D00700BFEB78 /* SwiftTemplatesTest.swift in Sources */,
 				2CEBA4592439EC6A00087595 /* AutoDefaultValue.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -746,38 +738,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		2CA9102427128DD100E4A17D /* XCRemoteSwiftPackageReference "Quick" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Quick/Quick.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
-			};
-		};
-		2CA9102727128DF600E4A17D /* XCRemoteSwiftPackageReference "Nimble" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Quick/Nimble";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		2CA9102527128DD100E4A17D /* Quick */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2CA9102427128DD100E4A17D /* XCRemoteSwiftPackageReference "Quick" */;
-			productName = Quick;
-		};
-		2CA9102827128DF600E4A17D /* Nimble */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2CA9102727128DF600E4A17D /* XCRemoteSwiftPackageReference "Nimble" */;
-			productName = Nimble;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2C78B8992439BFB3002F262C /* Project object */;
 }
