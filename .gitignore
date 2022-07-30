@@ -31,3 +31,4 @@ Pods/*
 ## macOS
 .DS_Store
 
+Tests/Generated/*
