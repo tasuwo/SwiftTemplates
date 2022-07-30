@@ -17,13 +17,6 @@ jobs:
         with:
           ruby-version: 2.7
           bundler-cache: true
-      - name: Cache Swift Packages
-        uses: actions/cache@v1
-        with:
-          path: SourcePackages
-          key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
-          restore-keys: |
-            ${{ runner.os }}-spm-
       - name: Cache CocoaPods files
         uses: actions/cache@v2
         with:
