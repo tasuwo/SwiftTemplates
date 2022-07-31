@@ -11,6 +11,7 @@ extension Variable: DefaultValueGeneratable {}
 extension TupleElement: DefaultValueGeneratable {}
 extension AssociatedValue: DefaultValueGeneratable {}
 extension GenericTypeParameter: DefaultValueGeneratable {}
+extension MethodParameter: DefaultValueGeneratable {}
 
 extension Type {
     func hasAnnotationOrImplements(_ identifier: String) -> Bool {
@@ -154,3 +155,4 @@ extension Dictionary where Key == String, Value == NSObject {
 
 let identifier = "AutoDefaultValue"
 let publicIdentifier = "AutoDefaultValueUsePublic"
+let initializerIdentifier = "AutoDefaultValueUseThisInitializer"

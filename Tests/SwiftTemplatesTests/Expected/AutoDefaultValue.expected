@@ -143,3 +143,59 @@ extension AutoDefaultValueStruct {
         )
     }
 }
+
+extension AutoDefaultValueUseFailableInitializer {
+    static func makeDefault(
+        string: String = "",
+        uint: UInt = 0,
+        float: Float = 0,
+    ) -> Self {
+        return  .init(
+            string: string,
+            uint: uint,
+            float: float,
+        )!
+    }
+}
+
+extension AutoDefaultValueUseFailableThrowableInitializer {
+    static func makeDefault(
+        string: String = "",
+        uint: UInt = 0,
+        float: Float = 0,
+    ) -> Self {
+        return try! .init(
+            string: string,
+            uint: uint,
+            float: float,
+        )!
+    }
+}
+
+extension AutoDefaultValueUseInitializer {
+    static func makeDefault(
+        string: String = "",
+        uint: UInt = 0,
+        float: Float = 0,
+    ) -> Self {
+        return  .init(
+            string: string,
+            uint: uint,
+            float: float,
+        )
+    }
+}
+
+extension AutoDefaultValueUseThrowableInitializer {
+    static func makeDefault(
+        string: String = "",
+        uint: UInt = 0,
+        float: Float = 0,
+    ) -> Self {
+        return try! .init(
+            string: string,
+            uint: uint,
+            float: float,
+        )
+    }
+}

@@ -6,23 +6,34 @@
     <%_ %><%= statement %>
 <%_ } -%>
 
-<% for type in types.all { -%>
-    <%_ guard type.hasAnnotationOrImplements(identifier) else { continue } -%>
+<% for type in types.all.filter({ $0.hasAnnotationOrImplements(identifier) }) { -%>
     <%_ if type.hasAnnotationOrImplements(publicIdentifier) { -%>
         <%_ %>public extension <%= type.name %> {
     <%_ } else { -%>
         <%_ %>extension <%= type.name %> {
     <%_ } -%>
     <%_ %>    static func makeDefault(
-    <%_ for (index, variable) in type.storedVariables.enumerated() { -%>
-    <%_ %>        <%= variable.name %>: <%= variable.absoluteTypeName %> = <%= defaultValue(from: variable, identifiedBy: identifier) %><% if index < type.storedVariables.count - 1 { %>,<% } %>
+    <%_ if let initializer = type.initializers.first(where: { $0.annotations.keys.contains(initializerIdentifier) }) { -%>
+        <%_ for (index, variable) in initializer.parameters.enumerated() { -%>
+        <%_ %>        <%= variable.name %>: <%= variable.absoluteTypeName %> = <%= defaultValue(from: variable, identifiedBy: identifier) %><% if index < type.storedVariables.count - 1 { %>,<% } %>
+        <%_ } -%>
+        <%_ %>    ) -> Self {
+        <%_ %>        return <%= initializer.throws ? "try!" : "" %> .init(
+                      <%_ for (index, variable) in initializer.parameters.enumerated() { -%>
+        <%_ %>            <%= variable.name %>: <%= variable.name %><%_ if index < type.storedVariables.count - 1 { -%>,<% } %>
+                      <%_ } -%>
+        <%_ %>        )<%= initializer.isFailableInitializer ? "!" : "" %>
+    <%_ } else { -%>
+        <%_ for (index, variable) in type.storedVariables.enumerated() { -%>
+        <%_ %>        <%= variable.name %>: <%= variable.absoluteTypeName %> = <%= defaultValue(from: variable, identifiedBy: identifier) %><% if index < type.storedVariables.count - 1 { %>,<% } %>
+        <%_ } -%>
+        <%_ %>    ) -> Self {
+        <%_ %>        return .init(
+                      <%_ for (index, variable) in type.storedVariables.enumerated() { -%>
+        <%_ %>            <%= variable.name %>: <%= variable.name %><%_ if index < type.storedVariables.count - 1 { -%>,<% } %>
+                      <%_ } -%>
+        <%_ %>        )
     <%_ } -%>
-    <%_ %>    ) -> Self {
-    <%_ %>        return .init(
-                  <%_ for (index, variable) in type.storedVariables.enumerated() { -%>
-    <%_ %>            <%= variable.name %>: <%= variable.name %><%_ if index < type.storedVariables.count - 1 { -%>,<% } %>
-                  <%_ } -%>
-    <%_ %>        )
     <%_ %>    }
     <%_ %>}
     <%_ %>

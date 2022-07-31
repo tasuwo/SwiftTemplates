@@ -145,3 +145,91 @@ public struct AutoDefaultValuePublicStructNotGenerated: AutoDefaultValueUsePubli
     let double: Double
     let float: Float
 }
+
+// MARK: - Use Initializer
+
+struct AutoDefaultValueUseInitializer: AutoDefaultValue {
+    let string: String
+    let bool: Bool
+    let integer: Int
+    let unsignedInterger: UInt
+    let double: Double
+    let float: Float
+
+    // sourcery: AutoDefaultValueUseThisInitializer
+    init(string: String, uint: UInt, float: Float) {
+        self.string = string
+        self.bool = false
+        self.integer = 0
+        self.unsignedInterger = uint
+        self.double = 0
+        self.float = float
+    }
+
+    // sourcery: AutoDefaultValueUseThisInitializer
+    init(bool: Bool, int: Int, double: Double) {
+        self.string = ""
+        self.bool = bool
+        self.integer = int
+        self.unsignedInterger = 0
+        self.double = double
+        self.float = 0
+    }
+}
+
+struct AutoDefaultValueUseFailableInitializer: AutoDefaultValue {
+    let string: String
+    let bool: Bool
+    let integer: Int
+    let unsignedInterger: UInt
+    let double: Double
+    let float: Float
+
+    // sourcery: AutoDefaultValueUseThisInitializer
+    init?(string: String, uint: UInt, float: Float) {
+        self.string = string
+        self.bool = false
+        self.integer = 0
+        self.unsignedInterger = uint
+        self.double = 0
+        self.float = float
+    }
+}
+
+struct AutoDefaultValueUseThrowableInitializer: AutoDefaultValue {
+    let string: String
+    let bool: Bool
+    let integer: Int
+    let unsignedInterger: UInt
+    let double: Double
+    let float: Float
+
+    // sourcery: AutoDefaultValueUseThisInitializer
+    init(string: String, uint: UInt, float: Float) throws {
+        self.string = string
+        self.bool = false
+        self.integer = 0
+        self.unsignedInterger = uint
+        self.double = 0
+        self.float = float
+    }
+}
+
+struct AutoDefaultValueUseFailableThrowableInitializer: AutoDefaultValue {
+    let string: String
+    let bool: Bool
+    let integer: Int
+    let unsignedInterger: UInt
+    let double: Double
+    let float: Float
+
+    // sourcery: AutoDefaultValueUseThisInitializer
+    init?(string: String, uint: UInt, float: Float) throws {
+        self.string = string
+        self.bool = false
+        self.integer = 0
+        self.unsignedInterger = uint
+        self.double = 0
+        self.float = float
+    }
+}
