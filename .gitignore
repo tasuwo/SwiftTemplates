@@ -4,6 +4,8 @@ build/
 !*.xcodeproj/xcshareddata
 !*.xcodeproj/project.pbxproj
 !*.xcworkspace/contents.xcworkspacedata
+# Cache SwiftPM for CI
+!*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 
 *.pbxuser
 !default.pbxuser
@@ -27,6 +29,8 @@ Pods/*
 
 ## SwiftPM
 !*.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+!.swiftpm/xcode/.xcshareddata
+.build/
 
 ## macOS
 .DS_Store

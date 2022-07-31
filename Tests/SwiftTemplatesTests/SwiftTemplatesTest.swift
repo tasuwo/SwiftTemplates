@@ -10,11 +10,11 @@ import XCTest
 
 class SwiftTemplatesTest: XCTestCase {
     static func check(template name: String) {
-        guard let generatedFilePath = Bundle(for: self).path(forResource: "\(name).generated", ofType: "swift") else {
+        guard let generatedFilePath = Bundle.module.path(forResource: "Generated/\(name).generated", ofType: "swift") else {
             XCTFail("\(name).generated.swift not found.")
             return
         }
-        guard let expectedFilePath = Bundle(for: self).path(forResource: name, ofType: "expected") else {
+        guard let expectedFilePath = Bundle.module.path(forResource: "Expected/\(name)", ofType: "expected") else {
             XCTFail("\(name).expected not found.")
             return
         }

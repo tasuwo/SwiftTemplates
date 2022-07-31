@@ -1,9 +1,9 @@
 sources:
-  - ./Tests/Context
+  - ./Tests/SwiftTemplatesTests/Context
 templates:
   - ./Templates
 output:
-  ./Tests/Generated
+  ./Tests/SwiftTemplatesTests/Generated
 args:
   import: "Foundation.NSDate;Foundation.NSURL"
   testable_import: "ModuleA;ModuleB"
