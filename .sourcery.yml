@@ -5,5 +5,7 @@ templates:
 output:
   ./Tests/SwiftTemplatesTests/Generated
 args:
-  import: "Foundation.NSDate;Foundation.NSURL"
-  testable_import: "ModuleA;ModuleB"
+  import: "Foundation"
+  testable_import:
+    - "ModuleA"
+    - "ModuleB"

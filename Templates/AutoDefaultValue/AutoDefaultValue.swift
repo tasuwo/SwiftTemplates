@@ -125,6 +125,25 @@ func defaultValue(from genericType: GenericType, identifiedBy identifier: String
         }
 }
 
+// MARK: - Configuration
+
+extension Dictionary where Key == String, Value == NSObject {
+    var importStatements: [String] {
+        return self.resolveModules(for: "testable_import").map { "@testable import \($0)" }
+            + self.resolveModules(for: "import").map { "import \($0)" }
+    }
+
+    private func resolveModules(for key: String) -> [String] {
+        if let module = self[key] as? String {
+            return [module]
+        } else if let modules = self[key] as? [String] {
+            return modules
+        } else {
+            return []
+        }
+    }
+}
+
 // MARK: - Indentifier
 
 let identifier = "AutoDefaultValue"

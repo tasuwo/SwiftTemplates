@@ -2,17 +2,9 @@
 <%# NOTE: If you want to add additional default value mapping, please edit `AutoDefaultValue.extension.swift`. -%>
 <%- includeFile("AutoDefaultValue.extension.swift") -%>
 <%- includeFile("AutoDefaultValue.swift") -%>
-<% if let modules = argument["testable_import"] as? String { -%>
-    <%_ for module in modules.split(separator: ";") { -%>
-        <%_ %>@testable import <%= module %>
-    <%_ } -%>
-<% } -%>
-
-<% if let modules = argument["import"] as? String { -%>
-    <%_ for module in modules.split(separator: ";") { -%>
-        <%_ %>import <%= module %>
-    <%_ } -%>
-<% } -%>
+<%_ for statement in argument.importStatements { -%>
+    <%_ %><%= statement %>
+<%_ } -%>
 
 <% for type in types.all { -%>
     <%_

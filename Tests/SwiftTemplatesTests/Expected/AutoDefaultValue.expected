@@ -1,7 +1,6 @@
 @testable import ModuleA
 @testable import ModuleB
-import Foundation.NSDate
-import Foundation.NSURL
+import Foundation
 
 extension AutoDefaultValueNamespace.AutoDefaultValueInnerStruct1 {
     static func makeDefault(
