@@ -1,6 +1,8 @@
 import Foundation
 import SourceryRuntime
 
+// MARK: - DefaultValueGeneratable
+
 protocol DefaultValueGeneratable {
     var typeName: TypeName { get }
     var type: Type? { get }
@@ -24,6 +26,8 @@ extension DefaultValueGeneratable {
             || self.type?.implements.keys.contains(identifier) == true
     }
 }
+
+// MARK: - Default Value
 
 func defaultValue(from variable: DefaultValueGeneratable, identifiedBy identifier: String) -> String {
     guard !variable.typeName.isOptional else {
@@ -120,6 +124,8 @@ func defaultValue(from genericType: GenericType, identifiedBy identifier: String
             result = result.replacingOccurrences(of: e.key, with: e.value)
         }
 }
+
+// MARK: - Indentifier
 
 let identifier = "AutoDefaultValue"
 let publicIdentifier = "AutoDefaultValuePublic"
