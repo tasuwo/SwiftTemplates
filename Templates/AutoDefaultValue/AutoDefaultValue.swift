@@ -1,7 +1,6 @@
-<%# Constructs static method `makeDefault()` for struct initialization by default values. -%>
-<%# NOTE: If you want to add additional default value mapping, please edit `AutoDefaultValue.extension.swift`. -%>
-<%- include("AutoDefaultValue.extension.swifttemplate") -%>
-<%
+import Foundation
+import SourceryRuntime
+
 protocol DefaultValueGeneratable {
     var typeName: TypeName { get }
     var type: Type? { get }
@@ -21,7 +20,7 @@ extension DefaultValueGeneratable {
     }
 
     func hasAnnotationOrImplements(_ identifier: String) -> Bool {
-        return self.type?.annotations.keys.contains(identifier) == true 
+        return self.type?.annotations.keys.contains(identifier) == true
             || self.type?.implements.keys.contains(identifier) == true
     }
 }
@@ -84,8 +83,8 @@ func defaultValue(from enumType: Enum, identifiedBy identifier: String) -> Strin
     } else {
         let defaultAssociatedValues = firstCase
             .associatedValues
-            .map { associatedValue -> String in 
-                let value = defaultValue(from: associatedValue, identifiedBy: identifier) 
+            .map { associatedValue -> String in
+                let value = defaultValue(from: associatedValue, identifiedBy: identifier)
                 if let label = associatedValue.localName {
                     return "\(label): \(value)"
                 } else {
@@ -125,49 +124,3 @@ func defaultValue(from genericType: GenericType, identifiedBy identifier: String
 let identifier = "AutoDefaultValue"
 let publicIdentifier = "AutoDefaultValuePublic"
 let validIdentifiers = [identifier, publicIdentifier]
--%>
-
-<% if let modules = argument["testable_import"] as? String { -%>
-    <%_ for module in modules.split(separator: ";") { -%>
-        <%_ %>@testable import <%= module %>
-    <%_ } -%>
-<% } -%>
-
-<% if let modules = argument["import"] as? String { -%>
-    <%_ for module in modules.split(separator: ";") { -%>
-        <%_ %>import <%= module %>
-    <%_ } -%>
-<% } -%>
-
-<% for type in types.all { -%>
-    <%_
-    let key: String? = {
-        if let key = type.annotations.keys.first(where: { validIdentifiers.contains($0) }) {
-            return key
-        }
-        if let key = type.implements.keys.first(where: { validIdentifiers.contains($0) }) {
-            return key
-        }
-        return nil
-    }()
-    guard let key = key else { continue }
-    -%>
-    <%_ if key == publicIdentifier { -%>
-        <%_ %>public extension <%= type.name %> {
-    <%_ } else { -%>
-        <%_ %>extension <%= type.name %> {
-    <%_ } -%>
-    <%_ %>    static func makeDefault(
-    <%_ for (index, variable) in type.storedVariables.enumerated() { -%>
-    <%_ %>        <%= variable.name %>: <%= variable.absoluteTypeName %> = <%= defaultValue(from: variable, identifiedBy: identifier) %><% if index < type.storedVariables.count - 1 { %>,<% } %>
-    <%_ } -%>
-    <%_ %>    ) -> Self {
-    <%_ %>        return .init(
-                  <%_ for (index, variable) in type.storedVariables.enumerated() { -%>
-    <%_ %>            <%= variable.name %>: <%= variable.name %><%_ if index < type.storedVariables.count - 1 { -%>,<% } %>
-                  <%_ } -%>
-    <%_ %>        )
-    <%_ %>    }
-    <%_ %>}
-    <%_ %>
-<%_ } -%>

@@ -1,4 +1,3 @@
-<%
 enum DefaultValueSettings {
     static let simpleMappings: [String:String] = [
         "Date":"Date(timeIntervalSince1970: 0)",
@@ -26,4 +25,3 @@ enum DefaultValueSettings {
         return format
     }
 }
--%>

@@ -35,4 +35,4 @@ Pods/*
 ## macOS
 .DS_Store
 
-Tests/Generated/*
+Tests/SwiftTemplatesTests/Generated/*
