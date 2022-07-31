@@ -12,6 +12,13 @@ extension TupleElement: DefaultValueGeneratable {}
 extension AssociatedValue: DefaultValueGeneratable {}
 extension GenericTypeParameter: DefaultValueGeneratable {}
 
+extension Type {
+    func hasAnnotationOrImplements(_ identifier: String) -> Bool {
+        return self.annotations.keys.contains(identifier) == true
+            || self.implements.keys.contains(identifier) == true
+    }
+}
+
 extension DefaultValueGeneratable {
     var absoluteTypeName: String {
         if let typeName = self.typeName.actualTypeName {
@@ -22,8 +29,7 @@ extension DefaultValueGeneratable {
     }
 
     func hasAnnotationOrImplements(_ identifier: String) -> Bool {
-        return self.type?.annotations.keys.contains(identifier) == true
-            || self.type?.implements.keys.contains(identifier) == true
+        return self.type?.hasAnnotationOrImplements(identifier) == true
     }
 }
 
@@ -147,5 +153,4 @@ extension Dictionary where Key == String, Value == NSObject {
 // MARK: - Indentifier
 
 let identifier = "AutoDefaultValue"
-let publicIdentifier = "AutoDefaultValuePublic"
-let validIdentifiers = [identifier, publicIdentifier]
+let publicIdentifier = "AutoDefaultValueUsePublic"

@@ -124,11 +124,20 @@ class AutoDefaultValueClass {
     init() {}
 }
 
-// MARK: - Public
+// MARK: - Use Public
 
-protocol AutoDefaultValuePublic {}
+protocol AutoDefaultValueUsePublic {}
 
-public struct AutoDefaultValuePublicStruct: AutoDefaultValuePublic {
+public struct AutoDefaultValuePublicStruct: AutoDefaultValue, AutoDefaultValueUsePublic {
+    let string: String
+    let bool: Bool
+    let integer: Int
+    let unsignedInterger: UInt
+    let double: Double
+    let float: Float
+}
+
+public struct AutoDefaultValuePublicStructNotGenerated: AutoDefaultValueUsePublic {
     let string: String
     let bool: Bool
     let integer: Int
