@@ -15,12 +15,12 @@
     <%_ %>    static func makeDefault(
     <%_ if let initializer = type.initializers.first(where: { $0.annotations.keys.contains(initializerIdentifier) }) { -%>
         <%_ for (index, variable) in initializer.parameters.enumerated() { -%>
-        <%_ %>        <%= variable.name %>: <%= variable.absoluteTypeName %> = <%= defaultValue(from: variable, identifiedBy: identifier) %><% if index < type.storedVariables.count - 1 { %>,<% } %>
+        <%_ %>        <%= variable.name %>: <%= variable.absoluteTypeName %> = <%= defaultValue(from: variable, identifiedBy: identifier) %><% if index < initializer.parameters.count - 1 { %>,<% } %>
         <%_ } -%>
         <%_ %>    ) -> Self {
         <%_ %>        return <%= initializer.throws ? "try!" : "" %> .init(
                       <%_ for (index, variable) in initializer.parameters.enumerated() { -%>
-        <%_ %>            <%= variable.name %>: <%= variable.name %><%_ if index < type.storedVariables.count - 1 { -%>,<% } %>
+        <%_ %>            <%= variable.name %>: <%= variable.name %><%_ if index < initializer.parameters.count - 1 { -%>,<% } %>
                       <%_ } -%>
         <%_ %>        )<%= initializer.isFailableInitializer ? "!" : "" %>
     <%_ } else { -%>
