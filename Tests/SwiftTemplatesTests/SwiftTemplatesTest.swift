@@ -46,5 +46,6 @@ class SwiftTemplatesTest: XCTestCase {
 
     func test_AutoDefaultValue_GeneratesExpectedCode() {
         Self.check(template: "AutoDefaultValue")
+        Self.check(template: "TypeErased")
     }
 }

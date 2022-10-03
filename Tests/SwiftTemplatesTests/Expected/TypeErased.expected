@@ -1,0 +1,247 @@
+extension MultipleAssociatedType {
+    func erasedToAnyMultipleAssociatedType() -> AnyMultipleAssociatedType<One, Two, Three> {
+        return .init(self)
+    }
+}
+
+class AnyMultipleAssociatedType<One, Two: MyTypeA, Three: MyTypeB & MyTypeC> {
+    private let box: MultipleAssociatedTypeBoxBase<One, Two, Three>
+    
+    init<T: MultipleAssociatedType>(_ base: T) where T.One == One, T.Two == Two, T.Three == Three {
+        self.box = MultipleAssociatedTypeBox(base)
+    }
+}
+
+extension AnyMultipleAssociatedType: MultipleAssociatedType {
+    var immutableOne: One {
+        get { box.immutableOne }
+    }
+    var mutaleOne: One {
+        get { box.mutaleOne }
+        set { box.mutaleOne = newValue }
+    }
+    var immutableTwo: Two {
+        get { box.immutableTwo }
+    }
+    var mutaleTwo: Two {
+        get { box.mutaleTwo }
+        set { box.mutaleTwo = newValue }
+    }
+    var immutableThree: Three {
+        get { box.immutableThree }
+    }
+    var mutaleThree: Three {
+        get { box.mutaleThree }
+        set { box.mutaleThree = newValue }
+    }
+
+    func getAll() -> (One, Two, Three) {
+        box.getAll()
+    }
+    func takeAll(one: One, two: Two, three: Three) -> Void {
+        box.takeAll(one: one, two: two, three: three)
+    }
+}
+
+private class MultipleAssociatedTypeBoxBase<One, Two: MyTypeA, Three: MyTypeB & MyTypeC> {
+    var immutableOne: One {
+        get { fatalError("Abstract property call") }
+    }
+    var mutaleOne: One {
+        get { fatalError("Abstract property call") }
+        set { fatalError("Abstract property call") }
+    }
+    var immutableTwo: Two {
+        get { fatalError("Abstract property call") }
+    }
+    var mutaleTwo: Two {
+        get { fatalError("Abstract property call") }
+        set { fatalError("Abstract property call") }
+    }
+    var immutableThree: Three {
+        get { fatalError("Abstract property call") }
+    }
+    var mutaleThree: Three {
+        get { fatalError("Abstract property call") }
+        set { fatalError("Abstract property call") }
+    }
+
+    func getAll() -> (One, Two, Three) { fatalError("Abstract method call") }
+    func takeAll(one: One, two: Two, three: Three) -> Void { fatalError("Abstract method call") }
+}
+
+private class MultipleAssociatedTypeBox<T: MultipleAssociatedType>: MultipleAssociatedTypeBoxBase<T.One, T.Two, T.Three> {
+    typealias One = T.One
+    typealias Two = T.Two
+    typealias Three = T.Three
+
+    override var immutableOne: One {
+        get { base.immutableOne }
+    }
+    override var mutaleOne: One {
+        get { base.mutaleOne }
+        set { base.mutaleOne = newValue }
+    }
+    override var immutableTwo: Two {
+        get { base.immutableTwo }
+    }
+    override var mutaleTwo: Two {
+        get { base.mutaleTwo }
+        set { base.mutaleTwo = newValue }
+    }
+    override var immutableThree: Three {
+        get { base.immutableThree }
+    }
+    override var mutaleThree: Three {
+        get { base.mutaleThree }
+        set { base.mutaleThree = newValue }
+    }
+
+    private var base: T
+    
+    init(_ base: T) {
+        self.base = base
+    }
+
+    override func getAll() -> (One, Two, Three) {
+        base.getAll()
+    }
+    override func takeAll(one: One, two: Two, three: Three) -> Void {
+        base.takeAll(one: one, two: two, three: three)
+    }
+}
+
+extension PublicAssociatedType {
+    func erasedToAnyPublicAssociatedType() -> AnyPublicAssociatedType<One> {
+        return .init(self)
+    }
+}
+
+public class AnyPublicAssociatedType<One> {
+    private let box: PublicAssociatedTypeBoxBase<One>
+    
+    init<T: PublicAssociatedType>(_ base: T) where T.One == One {
+        self.box = PublicAssociatedTypeBox(base)
+    }
+}
+
+extension AnyPublicAssociatedType: PublicAssociatedType {
+    public func getOne() -> One {
+        box.getOne()
+    }
+}
+
+private class PublicAssociatedTypeBoxBase<One> {
+    func getOne() -> One { fatalError("Abstract method call") }
+}
+
+private class PublicAssociatedTypeBox<T: PublicAssociatedType>: PublicAssociatedTypeBoxBase<T.One> {
+    typealias One = T.One
+
+    private var base: T
+    
+    init(_ base: T) {
+        self.base = base
+    }
+
+    override func getOne() -> One {
+        base.getOne()
+    }
+}
+
+extension SingleAssociatedType {
+    func erasedToAnySingleAssociatedType() -> AnySingleAssociatedType<One> {
+        return .init(self)
+    }
+}
+
+class AnySingleAssociatedType<One> {
+    private let box: SingleAssociatedTypeBoxBase<One>
+    
+    init<T: SingleAssociatedType>(_ base: T) where T.One == One {
+        self.box = SingleAssociatedTypeBox(base)
+    }
+}
+
+extension AnySingleAssociatedType: SingleAssociatedType {
+    var immutableOne: One {
+        get { box.immutableOne }
+    }
+    var mutaleOne: One {
+        get { box.mutaleOne }
+        set { box.mutaleOne = newValue }
+    }
+
+    func getOne() -> One {
+        box.getOne()
+    }
+    func takeOne(_ one: One) -> Void {
+        box.takeOne(one)
+    }
+    func takeOneWithLabel(one: One) -> Void {
+        box.takeOneWithLabel(one: one)
+    }
+    func throwMethod() throws -> Void {
+        try box.throwMethod()
+    }
+    func asyncMethod() async -> Void {
+        await box.asyncMethod()
+    }
+    func throwAsyncMethod() async throws -> Void {
+        try await box.throwAsyncMethod()
+    }
+}
+
+private class SingleAssociatedTypeBoxBase<One> {
+    var immutableOne: One {
+        get { fatalError("Abstract property call") }
+    }
+    var mutaleOne: One {
+        get { fatalError("Abstract property call") }
+        set { fatalError("Abstract property call") }
+    }
+
+    func getOne() -> One { fatalError("Abstract method call") }
+    func takeOne(_ one: One) -> Void { fatalError("Abstract method call") }
+    func takeOneWithLabel(one: One) -> Void { fatalError("Abstract method call") }
+    func throwMethod() throws -> Void { fatalError("Abstract method call") }
+    func asyncMethod() async -> Void { fatalError("Abstract method call") }
+    func throwAsyncMethod() async throws -> Void { fatalError("Abstract method call") }
+}
+
+private class SingleAssociatedTypeBox<T: SingleAssociatedType>: SingleAssociatedTypeBoxBase<T.One> {
+    typealias One = T.One
+
+    override var immutableOne: One {
+        get { base.immutableOne }
+    }
+    override var mutaleOne: One {
+        get { base.mutaleOne }
+        set { base.mutaleOne = newValue }
+    }
+
+    private var base: T
+    
+    init(_ base: T) {
+        self.base = base
+    }
+
+    override func getOne() -> One {
+        base.getOne()
+    }
+    override func takeOne(_ one: One) -> Void {
+        base.takeOne(one)
+    }
+    override func takeOneWithLabel(one: One) -> Void {
+        base.takeOneWithLabel(one: one)
+    }
+    override func throwMethod() throws -> Void {
+        try base.throwMethod()
+    }
+    override func asyncMethod() async -> Void {
+        await base.asyncMethod()
+    }
+    override func throwAsyncMethod() async throws -> Void {
+        try await base.throwAsyncMethod()
+    }
+}

@@ -10,36 +10,9 @@ My Set of Sourcery templates
 
 Template used to generate initializer with default values for all structures that are annotated with `AutoDefaultValue` annotation.
 
-### Usage
+## TypeErased
 
-Install [Sourcery](https://github.com/krzysztofzablocki/Sourcery) via CocoaPods. Just add a new "Run Script Phase" with:
-
-``` shell
-#!/bin/sh
-
-VERSION="v2.0.0"
-
-if [[ ! -f "./templates/AutoDefaultValue.swifttemplate" ]]; then
-    curl -o "./templates/AutoDefaultValue.swifttemplate" \
-        "https://raw.githubusercontent.com/tasuwo/SwiftTemplates/${VERSION}/Templates/AutoDefaultValue/AutoDefaultValue.swifttemplate"
-fi
-
-if [[ ! -f "./templates/AutoDefaultValue.swift" ]]; then
-    curl -o "./templates/AutoDefaultValue.swift" \
-        "https://raw.githubusercontent.com/tasuwo/SwiftTemplates/${VERSION}/Templates/AutoDefaultValue/AutoDefaultValue.swift"
-fi
-
-if [[ ! -f "./templates/AutoDefaultValue.extension.swift" ]]; then
-    curl -o "./templates/AutoDefaultValue.extension.swift" \
-        "https://raw.githubusercontent.com/tasuwo/SwiftTemplates/${VERSION}/Templates/AutoDefaultValue/AutoDefaultValue.extension.swift"
-fi
-
-if [[ -f "${PODS_ROOT}/Sourcery/bin/sourcery" ]]; then
-  ${PODS_ROOT}/Sourcery/bin/sourcery --config ${PROJECT_DIR}/.sourcery.yml
-else
-  echo "warning: Sourcery is not installed. Run 'pod install --repo-update' to install it."
-fi
-```
+Template used to generate Type Erasure for protocols that are annotated with `TypeErased` annotation.
 
 ## License
 

@@ -1,0 +1,79 @@
+<%- includeFile("TypeErased.swift") -%>
+
+<%_ for `protocol` in types.protocols.filter({ $0.annotations.keys.contains("TypeErased") && $0.annotatedAssociatedTypes.isEmpty == false }) { -%>
+
+// MARK: - Type Eraser for <%= `protocol`.name %>
+
+extension <%= `protocol`.name %> {
+    func erasedToAny<%= `protocol`.name %>() -> Any<%= `protocol`.name %><<%= `protocol`.annotatedAssociatedTypes.joined(separator: ", ") %>> {
+        return .init(self)
+    }
+}
+
+<%= `protocol`.isPublic ? "public " : "" %>class Any<%= `protocol`.name %><<%= `protocol`.typeParameters.joined(separator: ", ") %>> {
+    private let box: <%= `protocol`.name %>BoxBase<<%= `protocol`.annotatedAssociatedTypes.joined(separator: ", ") %>>
+    
+    init<T: <%= `protocol`.name %>>(_ base: T) where <%= `protocol`.annotatedAssociatedTypes.map({ "T.\($0) == \($0)" }).joined(separator: ", ") %> {
+        self.box = <%= `protocol`.name %>Box(base)
+    }
+}
+
+extension Any<%= `protocol`.name %>: <%= `protocol`.name %> {
+    <%_ for property in `protocol`.variables { -%>
+    <%= `protocol`.isPublic ? "public " : "" %>var <%= property.name %>: <%= property.typeName %> {
+        get { box.<%= property.name %> }
+        <%_ if property.isMutable { -%>
+        set { box.<%= property.name %> = newValue }
+        <%_ } -%>
+    }
+    <%_ } -%>
+
+    <%_ for method in `protocol`.methods { -%>
+    <%= `protocol`.isPublic ? "public " : "" %><%= method.declarationAsSource %> {
+        <%= method.callAsSource(callee: "box") %>
+    }
+    <%_ } -%>
+}
+
+private class <%= `protocol`.name %>BoxBase<<%= `protocol`.typeParameters.joined(separator: ", ") %>> {
+    <%_ for property in `protocol`.variables { -%>
+    var <%= property.name %>: <%= property.typeName %> {
+        get { fatalError("Abstract property call") }
+        <%_ if property.isMutable { -%>
+        set { fatalError("Abstract property call") }
+        <%_ } -%>
+    }
+    <%_ } -%>
+
+    <%_ for method in `protocol`.methods { -%>
+    <%= method.declarationAsSource %> { fatalError("Abstract method call") }
+    <%_ } -%>
+}
+
+private class <%= `protocol`.name %>Box<T: <%= `protocol`.name %>>: <%= `protocol`.name %>BoxBase<<%= `protocol`.annotatedAssociatedTypes.map({ "T.\($0)" }).joined(separator: ", ") %>> {
+    <%_ for associatedType in `protocol`.annotatedAssociatedTypes { -%>
+    typealias <%= associatedType %> = T.<%= associatedType %>
+    <%_ } -%>
+
+    <%_ for property in `protocol`.variables { -%>
+    override var <%= property.name %>: <%= property.typeName %> {
+        get { base.<%= property.name %> }
+        <%_ if property.isMutable { -%>
+        set { base.<%= property.name %> = newValue }
+        <%_ } -%>
+    }
+    <%_ } -%>
+
+    private var base: T
+    
+    init(_ base: T) {
+        self.base = base
+    }
+
+    <%_ for method in `protocol`.methods { -%>
+    override <%= method.declarationAsSource %> {
+        <%= method.callAsSource(callee: "base") %>
+    }
+    <%_ } -%>
+}
+<%_ } -%>

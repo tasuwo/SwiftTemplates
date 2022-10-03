@@ -1,11 +1,23 @@
-sources:
-  - ./Tests/SwiftTemplatesTests/Context
-templates:
-  - ./Templates
-output:
-  ./Tests/SwiftTemplatesTests/Generated
-args:
-  import: "Foundation"
-  testable_import:
-    - "ModuleA"
-    - "ModuleB"
+configurations:
+  - sources:
+      - ./Tests/SwiftTemplatesTests/Context
+    templates:
+      - ./Templates
+    output:
+      ./Tests/SwiftTemplatesTests/Generated
+    args:
+      import: "Foundation"
+      testable_import:
+        - "ModuleA"
+        - "ModuleB"
+  - sources:
+      - ./Tests/SwiftTemplatesTests/Context
+    templates:
+      - ./Templates
+    output:
+      ./Tests/SwiftTemplatesTests/BuildCheck
+    args:
+      import: "Foundation"
+      testable_import:
+        - "ModuleA"
+        - "ModuleB"
